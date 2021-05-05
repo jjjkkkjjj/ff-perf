@@ -1,0 +1,92 @@
+[
+	{
+		"Day": 0,
+		"Fatigue": 0,
+        "Fitness": 0,
+        "Performance": 0
+	},
+	{
+		"Day": 1,
+		"Fatigue": 200,
+        "Fitness": 100,
+        "Performance": -100
+    },
+    {
+		"Day": 2,
+		"Fatigue": 180.9675,
+        "Fitness": 97.80229,
+        "Performance": -83.1652
+    },
+    {
+		"Day": 3,
+		"Fatigue": 163.7462,
+        "Fitness": 95.65287,
+        "Performance": -68.0933
+    },
+    {
+		"Day": 4,
+		"Fatigue": 148.1636,
+        "Fitness": 93.5507,
+        "Performance": -54.6129
+    },
+    {
+		"Day": 5,
+		"Fatigue": 134.064,
+        "Fitness": 91.49472,
+        "Performance": -42.5693
+    },
+    {
+		"Day": 6,
+		"Fatigue": 121.3061,
+        "Fitness": 89.48393,
+        "Performance": -31.82222
+    },
+    {
+		"Day": 7,
+		"Fatigue": 109.7623,
+        "Fitness": 87.51733,
+        "Performance": -22.245
+    },
+    {
+		"Day": 8,
+		"Fatigue": 99.31706,
+        "Fitness": 85.59395,
+        "Performance": -13.7231
+    },
+    {
+		"Day": 9,
+		"Fatigue": 88.86579,
+        "Fitness": 83.71284,
+        "Performance": -6.15295
+    },
+    {
+		"Day": 10,
+		"Fatigue": 81.31393,
+        "Fitness": 81.87308,
+        "Performance": 0.559143
+    },
+    {
+		"Day": 11,
+		"Fatigue": 73.57589,
+        "Fitness": 80.07374,
+        "Performance": 6.497852
+    },
+    {
+		"Day": 12,
+		"Fatigue": 66.57422,
+        "Fitness": 78.31395,
+        "Performance": 11.73973
+    },
+    {
+		"Day": 13,
+		"Fatigue": 60.23884,
+        "Fitness": 76.59283,
+        "Performance": 16.35399
+    },
+    {
+		"Day": 14,
+		"Fatigue": 54.50636,
+        "Fitness": 74.90954,
+        "Performance": 20.40318
+	}
+]
