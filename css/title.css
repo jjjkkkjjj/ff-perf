@@ -1,0 +1,50 @@
+/*  main title  */
+div.title{
+    height: var(--title-height);
+
+    display: flex;
+    flex-wrap: nowrap;
+
+    position: relative;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+
+/* title text */
+div.titletxt{
+    width: calc(100vw - var(--title-image-width)*2 + 48px)!important;
+    height: inherit;
+    top: 0px;
+    margin: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--bg-main-color);
+    transform: skew(-6deg);
+
+    margin-left: -24px;
+    margin-right: -24px;
+    z-index: 1;
+}
+div.titletxt > h1{
+
+    color: var(--text-main-color);
+    text-align: center;
+    font-family: "Bangla MN";
+}
+
+/* title images */
+div.title > img.titleimg {
+    width: var(--title-image-width);
+    height: inherit;
+}
+div.title > #workout {
+    left: 0px;
+}
+div.title > #run {
+    right: 0px;
+}

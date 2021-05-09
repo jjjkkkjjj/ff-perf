@@ -1,5 +1,7 @@
 # Fitness Fatigue Performance Curve Generator
 
+URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/)
+
 ## Design
 
 | Type              | Color   |
@@ -12,9 +14,8 @@
 
 
 
-Font
-
-Title: Bangla MN
+- Font
+  - Title: Bangla MN
 
 ## Math
 

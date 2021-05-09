@@ -6,7 +6,9 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" media="screen" href="css/design.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/title.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/button.css" />
     <!-- load Bangla MN -->
     <link href="//db.onlinewebfonts.com/c/3d37467c4a9c7c1188bc3e0b7aadfa0d?family=Bangla+MN" rel="stylesheet" type="text/css"/>
     <!-- javascript -->
@@ -15,7 +17,14 @@
     <script src="js/ff-perf.js"></script>
 </head>
 <body>
-    <h1 id='title'>Fitness Fatigue Performance<br>Curve Generator</h1>
+    <!-- Title -->
+    <div class='title'>
+        <img class="titleimg" id="workout" src="images/workout.jpg" alt="">
+        <div class="titletxt">
+            <h1 class="titletxt">Fitness Fatigue Performance<br>Curve Generator</h1>
+        </div>
+        <img class="titleimg" id="run" src="images/run.jpg" alt="">
+    </div>
 
     <!-- Settings -->
     <div class='block' id='settings'>
@@ -50,19 +59,13 @@
     <!-- Data -->
     <div class='block' id='data'>
         <h2>Data</h2>
-        <div class='button'>
-            <img src="imgs/Icon-import-image.png" alt="">
-            <button id='import' onclick="showSum()">Import</button>
-        </div>
+        <button class='icontxt' id='import' onclick="showSum()">Import</button>
     </div>
 
     <!-- Graph -->
     <div class='block' id='graph'>
         <h2>Graph</h2>
-        <div class='button'>
-            <img src="imgs/Icon-export-image.png" alt="">
-            <button id='export' onclick="showSum()">Export</button>
-        </div>
+        <button class='icontxt' id='export' onclick="showSum()">Export</button>
     </div>
 
 </body>
