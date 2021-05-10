@@ -10,14 +10,34 @@
     --title-image-width: 348px;
 }
 
-/*  block's title  */
+/* grid */
+div.grid {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: [col1] 35% [col2] 65% [colend];
+    grid-template-rows: [row1] 50% [row2] 50% [rowend];
+}
+
+
+/* block's title */
 div.block > h2{
     color: var(--text-main-color);
     text-align: left;
     font-family: "Bangla MN";
 }
 
-/*  button  */
+/* block with button */
+div.blkwbtn {
+    display: flex;
+    justify-content: space-between;
+}
+div.blkwbtn> *:nth-child(-n+2){
+    height: 44px;
+}
+
+/* button */
 button.icontxt {
     background-color: var(--bg-main-color);
     border: #672BFF;

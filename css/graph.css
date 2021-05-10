@@ -1,0 +1,7 @@
+div#graph{
+    grid-column-start: col2;
+    grid-column-end: colend;
+    grid-row-start: row1;
+    grid-row-end: rowend;
+    position: relative;
+}

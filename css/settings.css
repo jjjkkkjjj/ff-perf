@@ -1,0 +1,7 @@
+div#settings{
+    grid-column-start: col1;
+    grid-column-end: col2;
+    grid-row-start: row1;
+    grid-row-end: row2;
+    position: relative;
+}

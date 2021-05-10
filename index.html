@@ -8,6 +8,9 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="css/base.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/title.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/settings.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/data.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/graph.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/button.css" />
     <!-- load Bangla MN -->
     <link href="//db.onlinewebfonts.com/c/3d37467c4a9c7c1188bc3e0b7aadfa0d?family=Bangla+MN" rel="stylesheet" type="text/css"/>
@@ -26,46 +29,48 @@
         <img class="titleimg" id="run" src="images/run.jpg" alt="">
     </div>
 
-    <!-- Settings -->
-    <div class='block' id='settings'>
-        <h2>Settings</h2>
-        <div>
-            <div>Parameters</div>
-            <select name="parameters" id="parameters"></select>
-            <!-- Paramter fields -->
-            <div class='input-param'>
-                <label>k1:<input type="text"></label>
-            </div>
-            <div class='input-param'>
-                <label>k2:<input type="text"></label>
-            </div>
-            <div class='input-param'>
-                <label>r1:<input type="text"></label>
-            </div>
-            <div class='input-param'>
-                <label>r2:<input type="text"></label>
-            </div>
-            <div>Duration</div>
-            <!-- Duration fields -->
-            <div class='input-param'>
-                <label>From:<input type="text"></label>
-            </div>
-            <div class='input-param'>
-                <label>To:<input type="text"></label>
+    <div class="grid">
+        <!-- Settings -->
+        <div class='block' id='settings'>
+            <h2>Settings</h2>
+            <div>
+                <div>Parameters</div>
+                <select name="parameters" id="parameters"></select>
+                <!-- Paramter fields -->
+                <div class='input-param'>
+                    <label>k1:<input type="text"></label>
+                </div>
+                <div class='input-param'>
+                    <label>k2:<input type="text"></label>
+                </div>
+                <div class='input-param'>
+                    <label>r1:<input type="text"></label>
+                </div>
+                <div class='input-param'>
+                    <label>r2:<input type="text"></label>
+                </div>
+                <div>Duration</div>
+                <!-- Duration fields -->
+                <div class='input-param'>
+                    <label>From:<input type="text"></label>
+                </div>
+                <div class='input-param'>
+                    <label>To:<input type="text"></label>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Data -->
-    <div class='block' id='data'>
-        <h2>Data</h2>
-        <button class='icontxt' id='import' onclick="showSum()">Import</button>
-    </div>
+        <!-- Data -->
+        <div class='block blkwbtn' id='data'>
+            <h2>Data</h2>
+            <button class='icontxt' id='import' onclick="showSum()">Import</button>
+        </div>
 
-    <!-- Graph -->
-    <div class='block' id='graph'>
-        <h2>Graph</h2>
-        <button class='icontxt' id='export' onclick="showSum()">Export</button>
+        <!-- Graph -->
+        <div class='block blkwbtn' id='graph'>
+            <h2>Graph</h2>
+            <button class='icontxt' id='export' onclick="showSum()">Export</button>
+        </div>
     </div>
 
 </body>

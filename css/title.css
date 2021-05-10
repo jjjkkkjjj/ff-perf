@@ -1,6 +1,12 @@
+/* body */
+body{
+    margin: 0px;
+}
+
 /*  main title  */
 div.title{
     height: var(--title-height);
+    width: 100vw;
 
     display: flex;
     flex-wrap: nowrap;
