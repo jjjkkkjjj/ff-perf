@@ -1,7 +1,16 @@
-div#settings{
+section#settings{
     grid-column-start: col1;
     grid-column-end: col2;
     grid-row-start: row1;
     grid-row-end: row2;
     position: relative;
+}
+
+div.scroll {
+    margin: var(--main-margin);
+    overflow: auto;
+}
+
+header.sethead {
+    font-size: var(--sethead-fontsize);
 }

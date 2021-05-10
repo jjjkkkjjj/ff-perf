@@ -4,7 +4,7 @@ body{
 }
 
 /*  main title  */
-div.title{
+main.title{
     height: var(--title-height);
     width: 100vw;
 
@@ -19,7 +19,7 @@ div.title{
 
 
 /* title text */
-div.titletxt{
+header.titletxt{
     width: calc(100vw - var(--title-image-width)*2 + 48px)!important;
     height: inherit;
     top: 0px;
@@ -36,7 +36,7 @@ div.titletxt{
     margin-right: -24px;
     z-index: 1;
 }
-div.titletxt > h1{
+header.titletxt > h1{
 
     color: var(--text-main-color);
     text-align: center;
@@ -44,13 +44,13 @@ div.titletxt > h1{
 }
 
 /* title images */
-div.title > img.titleimg {
+main.title > img.titleimg {
     width: var(--title-image-width);
     height: inherit;
 }
-div.title > #workout {
+main.title > #workout {
     left: 0px;
 }
-div.title > #run {
+main.title > #run {
     right: 0px;
 }

@@ -1,4 +1,4 @@
-div#data{
+section#data{
     grid-column-start: col1;
     grid-column-end: col2;
     grid-row-start: row2;

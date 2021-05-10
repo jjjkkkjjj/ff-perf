@@ -21,20 +21,24 @@
 </head>
 <body>
     <!-- Title -->
-    <div class='title'>
+    <main class='title'>
         <img class="titleimg" id="workout" src="images/workout.jpg" alt="">
-        <div class="titletxt">
+        <header class="titletxt">
             <h1 class="titletxt">Fitness Fatigue Performance<br>Curve Generator</h1>
-        </div>
+        </header>
         <img class="titleimg" id="run" src="images/run.jpg" alt="">
-    </div>
+    </main>
 
     <div class="grid">
         <!-- Settings -->
-        <div class='block' id='settings'>
+        <section class='block' id='settings'>
             <span>Settings</span>
-            <div>
-                <div>Parameters</div>
+            <div class="scroll">
+                <!-- Header -->
+                <header class="sethead">
+                    <span>Parameters</span>
+                    <div></div>
+                </header>
                 <select name="parameters" id="parameters"></select>
                 <!-- Paramter fields -->
                 <div class='input-param'>
@@ -49,7 +53,11 @@
                 <div class='input-param'>
                     <label>r2:<input type="text"></label>
                 </div>
-                <div>Duration</div>
+
+                <!-- Header -->
+                <header class="sethead">
+                    <span>Duration</span>
+                </header>
                 <!-- Duration fields -->
                 <div class='input-param'>
                     <label>From:<input type="text"></label>
@@ -58,19 +66,19 @@
                     <label>To:<input type="text"></label>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Data -->
-        <div class='block blkwbtn' id='data'>
+        <section class='block blkwbtn' id='data'>
             <span>Data</span>
             <button class='icontxt' id='import' onclick="showSum()">Import</button>
-        </div>
+        </section>
 
         <!-- Graph -->
-        <div class='block blkwbtn' id='graph'>
+        <section class='block blkwbtn' id='graph'>
             <span>Graph</span>
             <button class='icontxt' id='export' onclick="showSum()">Export</button>
-        </div>
+        </section>
     </div>
 
 </body>

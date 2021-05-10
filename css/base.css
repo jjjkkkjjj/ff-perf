@@ -10,6 +10,7 @@
     --title-image-width: 348px;
     --block-height: 44px;
     --block-fontsize: 30px;
+    --sethead-fontsize: 24px;
 
     /* margin */
     --main-margin: 8px;
@@ -28,7 +29,7 @@ div.grid {
 
 
 /* block's title */
-div.block > span{
+section.block > span{
     height: var(--block-height);
     margin: 0px;
 
@@ -41,11 +42,11 @@ div.block > span{
 }
 
 /* block with button */
-div.blkwbtn {
+section.blkwbtn {
     display: flex;
     justify-content: space-between;
 }
-div.blkwbtn> *:nth-child(-n+2){
+section.blkwbtn> *:nth-child(-n+2){
     height: var(--block-height);
 }
 
