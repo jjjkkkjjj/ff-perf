@@ -8,12 +8,18 @@
     /* size */
     --title-height: 190px;
     --title-image-width: 348px;
+    --block-height: 44px;
+    --block-fontsize: 30px;
+
+    /* margin */
+    --main-margin: 8px;
 }
 
 /* grid */
 div.grid {
-    width: 100vw;
+    width: auto;
     height: 100vh;
+    margin: var(--main-margin);
 
     display: grid;
     grid-template-columns: [col1] 35% [col2] 65% [colend];
@@ -22,10 +28,16 @@ div.grid {
 
 
 /* block's title */
-div.block > h2{
+div.block > span{
+    height: var(--block-height);
+    margin: 0px;
+
+    font-size: var(--block-fontsize);
+    
     color: var(--text-main-color);
     text-align: left;
-    font-family: "Bangla MN";
+    display: inline-flex;
+    align-items: center;
 }
 
 /* block with button */
@@ -34,7 +46,7 @@ div.blkwbtn {
     justify-content: space-between;
 }
 div.blkwbtn> *:nth-child(-n+2){
-    height: 44px;
+    height: var(--block-height);
 }
 
 /* button */
