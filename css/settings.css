@@ -11,6 +11,19 @@ div.scroll {
     overflow: auto;
 }
 
+/* settings header */
 header.sethead {
     font-size: var(--sethead-fontsize);
+}
+header.sethead > .bar{
+    width: auto;
+    height: 5px;
+    display: block;
+
+    background-color: var(--text-main-color);
+}
+
+/* with hint */
+span#headparams::after {
+    content: url("../images/hint.png");
 }
