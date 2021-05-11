@@ -14,7 +14,6 @@ div.scroll {
 /* settings header */
 header.sethead {
     font-size: var(--sethead-fontsize);
-    overflow: visible;
 }
 header.sethead > .bar{
     width: auto;
@@ -24,7 +23,8 @@ header.sethead > .bar{
     background-color: var(--text-main-color);
 }
 
-/* with hint */
+/* hint */
+/*
 #headparams::after {
     content: "";
     display: inline-block;
@@ -34,9 +34,22 @@ header.sethead > .bar{
 
     background-size: 30px 30px;
     background-image: url("../images/hint.png");
+}*/
+#hinticon{
+    cursor: pointer;
 }
+#paramtips {
+    grid-column-start: col1;
+    grid-column-end: col2;
+    grid-row-start: row1;
+    grid-row-end: row2;
+    position: relative;
 
-/*
-hover
-https://developer.mozilla.org/ja/docs/Web/CSS/::after
-*/
+    width: fit-content;
+    height: fit-content;
+
+    display: none;
+
+    background-color: aliceblue;
+    z-index: 2;
+}

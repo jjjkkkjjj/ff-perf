@@ -18,6 +18,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="js/design.js"></script>
     <script src="js/ff-perf.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
 </head>
 <body>
     <!-- Title -->
@@ -31,27 +40,41 @@
 
     <div class="grid">
         <!-- Settings -->
+        <summary class="tips" id="paramtips">
+            <ul>
+                <li>Performance&emsp;$p(t) = k_1g(t) + k_2h(t)$</li>
+                <li>Fitness&emsp;$g(t) = w(t)\exp{\left(-\frac{1}{\tau_1}\right)}$</li>
+                <li>Fatigue&emsp;$h(t) = w(t)\exp{\left(-\frac{1}{\tau_2}\right)}$</li>
+                <li>$w(t)$&emsp;TRIMP</li>
+                <li>$k_1$&emsp;The weight of fitness to calculate performance</li>
+                <li>$k_2$&emsp;The weight of fatigue to calculate performance</li>
+                <li>$\tau_1$&emsp;The time coefficient of fitness</li>
+                <li>$\tau_2$&emsp;The time coefficient of fatigue</li>
+            </ul>
+        </summary>
+
         <section class='block' id='settings'>
             <span>Settings</span>
             <div class="scroll">
                 <!-- Header -->
                 <header class="sethead">
                     <span id="headparams">Parameters</span>
+                    <img id="hinticon" src="images/hint.png" alt="Tips" width="30" height="30">
                     <div class="bar"></div>
                 </header>
                 <select name="parameters" id="selparams"></select>
                 <!-- Paramter fields -->
                 <div class='input-param'>
-                    <label>k1:<input type="text"></label>
+                    <label>$k_1$:<input type="text"></label>
                 </div>
                 <div class='input-param'>
-                    <label>k2:<input type="text"></label>
+                    <label>$k_2$:<input type="text"></label>
                 </div>
                 <div class='input-param'>
-                    <label>r1:<input type="text"></label>
+                    <label>$\tau_1$:<input type="text"></label>
                 </div>
                 <div class='input-param'>
-                    <label>r2:<input type="text"></label>
+                    <label>$\tau_2$:<input type="text"></label>
                 </div>
 
                 <!-- Header -->
