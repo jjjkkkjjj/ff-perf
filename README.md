@@ -38,3 +38,7 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 \end{description}
 ```
 
+## Debug
+
+- Active `Live server`.
+- Click `F5`
