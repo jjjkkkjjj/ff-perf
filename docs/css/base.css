@@ -4,6 +4,8 @@
     --bg-main-color: #FFD12B;
     --bg-sub-color: #EFE1AC;
     --text-main-color: #672BFF;
+    --text-gray-color: #B0B8BF;
+    --border-gray-color: #D3D7DB;
 
     /* size */
     --title-height: 190px;
@@ -18,6 +20,9 @@
 
     /* margin */
     --main-margin: 8px;
+
+    /* border radius */
+    --border-radius: 5px;
 }
 
 /* grid */

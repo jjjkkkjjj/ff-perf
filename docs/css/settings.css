@@ -8,6 +8,7 @@ section#settings{
 
 div.scroll {
     height: 100%;
+    font-size: var(--param-fontsize);
 
     margin: var(--main-margin);
     overflow: auto;
@@ -58,10 +59,19 @@ header.sethead > .bar{
 
 }
 
+/* combobox */
+select#selparams {
+    font-size: var(--param-fontsize);
+    margin: var(--main-margin);
+
+    border-color: var(--border-gray-color);
+    border-radius: var(--border-radius);
+}
+
 /* input of parameter */
 div.inptxt {
     height: calc(var(--param-fontsize) + 10px);
-    margin: 8px;
+    margin: var(--main-margin);
 
     display: flex;
     justify-content: flex-start;
@@ -79,5 +89,9 @@ div.inptxt > input {
     border: 0;
     outline: 0;
     background: transparent;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--border-gray-color);
 }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--text-gray-color);
+    opacity: 1; /* Firefox */
+  }
