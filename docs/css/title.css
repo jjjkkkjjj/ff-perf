@@ -24,6 +24,7 @@ header.titletxt{
     height: inherit;
     top: 0px;
     margin: 0px;
+    font-size: var(--title-fontsize);
 
     display: flex;
     align-items: center;

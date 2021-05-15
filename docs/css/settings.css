@@ -1,8 +1,8 @@
 section#settings{
     grid-column-start: col1;
     grid-column-end: col2;
-    grid-row-start: row1;
-    grid-row-end: row2;
+    grid-row-start: row2;
+    grid-row-end: rowend;
     position: relative;
 }
 
@@ -41,8 +41,8 @@ header.sethead > .bar{
 #paramtips {
     grid-column-start: col1;
     grid-column-end: col2;
-    grid-row-start: row1;
-    grid-row-end: row2;
+    grid-row-start: row2;
+    grid-row-end: rowend;
     position: relative;
 
     width: fit-content;
@@ -52,4 +52,8 @@ header.sethead > .bar{
 
     background-color: aliceblue;
     z-index: 2;
+}
+/*ここからああああ*/
+#input-param {
+    width: inherit;
 }

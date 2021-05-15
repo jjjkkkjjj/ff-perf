@@ -39,6 +39,12 @@
     </main>
 
     <div class="grid">
+        <!-- Data -->
+        <section class='block blkwbtn' id='data'>
+            <span>Data</span>
+            <button class='icontxt' id='import' onclick="showSum()">Import</button>
+        </section>
+
         <!-- Settings -->
         <summary class="tips" id="paramtips">
             <ul>
@@ -64,17 +70,17 @@
                 </header>
                 <select name="parameters" id="selparams"></select>
                 <!-- Paramter fields -->
-                <div class='input-param'>
-                    <label>$k_1$:<input type="text"></label>
+                <div class='inptxt' id='input-param'>
+                    <label>$k_1$:<input type="text" placeholder="The weight of fitness to calculate performance"></label>
                 </div>
-                <div class='input-param'>
-                    <label>$k_2$:<input type="text"></label>
+                <div class='inptxt' id='input-param'>
+                    <label>$k_2$:<input type="text" placeholder="The weight of fatigue to calculate performance"></label>
                 </div>
-                <div class='input-param'>
-                    <label>$\tau_1$:<input type="text"></label>
+                <div class='inptxt' id='input-param'>
+                    <label>$\tau_1$:<input type="text" placeholder="The time coefficient of fitness"></label>
                 </div>
-                <div class='input-param'>
-                    <label>$\tau_2$:<input type="text"></label>
+                <div class='inptxt' id='input-param'>
+                    <label>$\tau_2$:<input type="text" placeholder="The time coefficient of fatigue"></label>
                 </div>
 
                 <!-- Header -->
@@ -83,19 +89,13 @@
                     <div class="bar"></div>
                 </header>
                 <!-- Duration fields -->
-                <div class='input-param'>
-                    <label>From:<input type="text"></label>
+                <div class='inptxt' id='input-param'>
+                    <label>From:<input type="text" placeholder="Start date"></label>
                 </div>
-                <div class='input-param'>
-                    <label>To:<input type="text"></label>
+                <div class='inptxt' id='input-param'>
+                    <label>To:<input type="text" placeholder="End date"></label>
                 </div>
             </div>
-        </section>
-
-        <!-- Data -->
-        <section class='block blkwbtn' id='data'>
-            <span>Data</span>
-            <button class='icontxt' id='import' onclick="showSum()">Import</button>
         </section>
 
         <!-- Graph -->

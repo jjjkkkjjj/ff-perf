@@ -9,8 +9,12 @@
     --title-height: 190px;
     --title-image-width: 348px;
     --block-height: 44px;
-    --block-fontsize: 30px;
-    --sethead-fontsize: 24px;
+
+    /* font size */
+    --title-fontsize: 24px;
+    --block-fontsize: 38px;
+    --sethead-fontsize: 30px;
+    --param-fontsize: 20px;
 
     /* margin */
     --main-margin: 8px;
@@ -81,3 +85,15 @@ button.icontxt::after {
     display: none;
 }
 */
+
+/* input */
+div.inptxt {
+    font-size: var(--param-fontsize);
+}
+
+label > input{
+    margin-left: 10px;
+    border: none;
+    border-bottom: 1px solid #CCC;
+
+}
