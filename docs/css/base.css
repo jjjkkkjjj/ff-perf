@@ -14,7 +14,7 @@
     --title-fontsize: 24px;
     --block-fontsize: 38px;
     --sethead-fontsize: 30px;
-    --param-fontsize: 20px;
+    --param-fontsize: 24px;
 
     /* margin */
     --main-margin: 8px;
@@ -28,7 +28,7 @@ div.grid {
 
     display: grid;
     grid-template-columns: [col1] 35% [col2] 65% [colend];
-    grid-template-rows: [row1] 50% [row2] 50% [rowend];
+    grid-template-rows: [row1] 40% [row2] 40% [rowend];
 }
 
 
