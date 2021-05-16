@@ -38,6 +38,13 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 \end{description}
 ```
 
+## Dependencies
+For the best performance, add the specific paths like;
+
+```
+git add -f hoge/file
+```
+
 ## Debug
 
 - Active `Live server`.
