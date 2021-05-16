@@ -4,6 +4,8 @@ function showSum() {
     var sum = num1 + num2;
     alert(sum);
 }
+
+// table
 var clients = [
     { "Name": "Otto Clay", "Age": 25, "Country": 1, "Address": "Ap #897-1459 Quam Avenue", "Married": false },
     { "Name": "Connor Johnston", "Age": 45, "Country": 2, "Address": "Ap #370-4647 Dis Av.", "Married": true },
@@ -40,3 +42,19 @@ $("#dattable").jsGrid({
     ]
   });
   
+// graph
+$(function () {
+    var chart = c3.generate({
+        bindto: '#datgraph',
+        size: {
+            height: $("#datgraph").height(),
+            width: $("datgraph").width()
+        },
+        data: {
+        columns: [
+            ['data1', 30, 200, 100, 400, 150, 250],
+            ['data2', 50, 20, 10, 40, 15, 25]
+        ]
+        }
+    });
+});
