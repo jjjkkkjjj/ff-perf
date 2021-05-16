@@ -5,3 +5,8 @@ section#data{
     grid-row-end: row2;
     position: relative;
 }
+
+div#dattable {
+    width: 100%;
+    height: 100%;
+}

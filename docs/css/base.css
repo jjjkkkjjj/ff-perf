@@ -36,9 +36,22 @@ div.grid {
     grid-template-rows: [row1] 40% [row2] 40% [rowend];
 }
 
+/* section */
+section.block {
+    display:flex;
+    flex-direction: column;
+}
+section.block > *:first-child {
+    width: inherit;
+    height: var(--block-height);
+}
+section.block > *:last-child {
+    flex: 1;
+    width: inherit;
+}
 
-/* block's title */
-section.block > span{
+/* section's header's title */
+header.block > span{
     height: var(--block-height);
     margin: 0px;
 
@@ -50,14 +63,12 @@ section.block > span{
     align-items: center;
 }
 
-/* block with button */
-section.blkwbtn {
+/* section's header with button */
+header.blkwbtn {
     display: flex;
     justify-content: space-between;
 }
-section.blkwbtn> *:nth-child(-n+2){
-    height: var(--block-height);
-}
+
 
 /* button */
 button.icontxt {

@@ -3,8 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>FF-perf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- grid.js -->
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/gridjs-jquery/dist/gridjs.production.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" />
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" media="screen" href="css/base.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/title.css" />
@@ -12,12 +18,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/data.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/graph.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/button.css" />
+    
     <!-- load Bangla MN -->
     <link href="//db.onlinewebfonts.com/c/3d37467c4a9c7c1188bc3e0b7aadfa0d?family=Bangla+MN" rel="stylesheet" type="text/css"/>
-    <!-- javascript -->
+    
+    <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="js/design.js"></script>
-    <script src="js/ff-perf.js"></script>
+    
+    <!-- mathjax -->
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
         tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
@@ -27,6 +35,10 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 
+    <!-- javascript -->
+    <script src="js/design.js"></script>
+    <script src="js/ff-perf.js"></script>
+    
 </head>
 <body>
     <!-- Title -->
@@ -40,9 +52,18 @@
 
     <div class="grid">
         <!-- Data -->
-        <section class='block blkwbtn' id='data'>
-            <span>Data</span>
-            <button class='icontxt' id='import' onclick="showSum()">Import</button>
+        <section class='block' id='data'>
+            <header class="block blkwbtn">
+                <span>Data</span>
+                <button class='icontxt' id='import' onclick="showSum()">Import</button>
+            </header>
+
+            <!-- grid.js; I don't know why these tags in the head tag are invalid -->
+            <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+            <script src="https://unpkg.com/gridjs-jquery/dist/gridjs.production.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" />
+            <div id="dattable"></div>
+            <script src="js/ff-perf.js"></script>
         </section>
 
         <!-- Settings -->
@@ -60,7 +81,9 @@
         </summary>
 
         <section class='block' id='settings'>
-            <span>Settings</span>
+            <header class="block">
+                <span>Settings</span>
+            </header>
             <div class="scroll">
                 <!-- Header -->
                 <header class="sethead">
@@ -100,8 +123,11 @@
 
         <!-- Graph -->
         <section class='block blkwbtn' id='graph'>
-            <span>Graph</span>
-            <button class='icontxt' id='export' onclick="showSum()">Export</button>
+            <header class="block blkwbtn">
+                <span>Graph</span>
+                <button class='icontxt' id='export' onclick="showSum()">Export</button>
+            </header>
+            <div id="datgraph"></div>
         </section>
     </div>
 
