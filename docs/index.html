@@ -20,6 +20,7 @@
     <!-- Bower -->
     <!-- jquery -->
     <script src="./bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+
     <!-- jsgrid -->
     <link type="text/css" rel="stylesheet" href="./bower_components/jsgrid/dist/jsgrid.min.css" />
     <link type="text/css" rel="stylesheet" href="./bower_components/jsgrid/dist/jsgrid-theme.min.css" />
@@ -62,9 +63,12 @@
                 <span>Data</span>
                 <button class='icontxt' id='import' onclick="showSum()">Import</button>
             </header>
-
-            <div id="dattable"></div>
-            <script src="js/ff-perf.js"></script>
+            <div class="area">
+                <div class="blank"></div>
+                <div id="dattable"></div>
+                <script src="js/ff-perf.js"></script>
+                <div class="blank"></div>
+            </div>
         </section>
 
         <!-- Settings -->

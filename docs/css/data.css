@@ -11,13 +11,3 @@ div#dattable {
     height: 100%;
 }
 
-div.area {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* blank */
-div#blank {
-
-}

@@ -113,3 +113,10 @@ label > input{
     border-bottom: 1px solid #CCC;
 
 }
+
+/* area for javascript library */
+div.area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
