@@ -38,11 +38,18 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 \end{description}
 ```
 
+## Installation
+
+```
+npm install --save-dev bower
+bower install jquery js-grid c3
+```
+
 ## Dependencies
 For the best performance, add the specific paths like;
 
 ```
-git add -f hoge/file
+git add -f bower_components/file
 ```
 
 ## Debug
