@@ -50,6 +50,12 @@ $(function () {
             height: $("#datgraph").height(),
             width: $("datgraph").width()
         },
+        padding: {
+            top: 40,
+            right: 40,
+            bottom: 40,
+            left: 40,
+        },
         data: {
         columns: [
             ['data1', 30, 200, 100, 400, 150, 250],
