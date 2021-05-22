@@ -2,13 +2,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,bower
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,bower
 
+### source js ###
+js/*
+
 ### Bower ###
 bower_components/*
-.bower-cache
-.bower-registry
-.bower-tmp
-# exclude
-!bower_components/jquery/dist/jquery.min.js
 
 ### Node ###
 # Logs
