@@ -41,8 +41,13 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 ## Installation
 
 ```
-npm install --save-dev bower
-bower install jquery js-grid c3
+npm install -g webpack webpack-cli
+npm install --save-dev webpack webpack-cli jquery jsdom c3 jsgrid css-loader style-loader
+bower install jquery js-grid c3 papaparse
+```
+
+```
+browserify js/ff-perf.js -o dest/build.js
 ```
 
 ## Dependencies

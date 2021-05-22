@@ -1,3 +1,19 @@
+require('../node_modules/c3/c3.css');
+import * as c3  from 'c3';
+var $ = require('jquery');
+
+
+// load csv
+/*
+$('.icontxt#import').on('click', function(){
+    $('.dumfbtn').click();
+});
+
+$('.dumfbtn').change(function(){
+    const file = fs.createReadStream('default.csv');
+    var count = 0;
+});
+*/
 
 function showSum() {
     var num1 = 1;
@@ -42,7 +58,7 @@ var DateField = function(config) {
     });
 
 jsGrid.fields.dateField = DateField;
-*/
+
 $("#dattable").jsGrid({
     width: "100%",
     height: "auto",
@@ -59,7 +75,7 @@ $("#dattable").jsGrid({
         { name: "TRIMP", type: "number", width: 50, align: "center", validate: "required" },
         { type: "control" }
     ]
-});
+});*/
 
 
 // graph

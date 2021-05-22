@@ -14,20 +14,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/graph.css" />
     
     
-    <!-- Bower -->
-    <!-- jquery -->
-    <script src="./bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
-
     <!-- jsgrid -->
-    <link type="text/css" rel="stylesheet" href="./bower_components/jsgrid/dist/jsgrid.min.css" />
-    <link type="text/css" rel="stylesheet" href="./bower_components/jsgrid/dist/jsgrid-theme.min.css" />
-    <script src="./bower_components/jsgrid/dist/jsgrid.min.js" type="text/javascript"></script>
-    <!-- c3 -->
-    <link href="./bower_components/c3/c3.css" rel="stylesheet">
-    <script src="./bower_components/d3/d3.min.js" charset="utf-8"></script>
-    <script src="./bower_components/c3/c3.min.js" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="./node_modules/jsgrid/dist/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="./node_modules/jsgrid/dist/jsgrid-theme.min.css" />
 
-    
+    <!-- papaparse -->
+    <script src="./bower_components/papaparse/papaparse.min.js" type="text/javascript"></script>
+    <!-- fs -->
+    <script src="./bower_components/fs/dist/fs.min.js" type="module"></script>
+
     <!-- mathjax -->
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
@@ -39,8 +34,7 @@
     </script>
 
     <!-- javascript -->
-    <script src="js/design.js"></script>
-    
+    <script src="dest/bundle.js"></script>
 </head>
 <body>
     <!-- Title -->
@@ -64,7 +58,7 @@
                 <div class="blank"></div>
                 <div id="dattable"></div>
                 <div class="blank"></div>
-                <script src="js/ff-perf.js"></script>
+                
             </div>
         </section>
 
