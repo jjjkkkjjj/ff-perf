@@ -12,10 +12,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/settings.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/data.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/graph.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/button.css" />
     
-    <!-- load Bangla MN -->
-    <link href="//db.onlinewebfonts.com/c/3d37467c4a9c7c1188bc3e0b7aadfa0d?family=Bangla+MN" rel="stylesheet" type="text/css"/>
     
     <!-- Bower -->
     <!-- jquery -->
@@ -43,7 +40,6 @@
 
     <!-- javascript -->
     <script src="js/design.js"></script>
-    <script src="js/ff-perf.js"></script>
     
 </head>
 <body>
@@ -61,13 +57,14 @@
         <section class='block' id='data'>
             <header class="block blkwbtn">
                 <span>Data</span>
-                <button class='icontxt' id='import' onclick="showSum()">Import</button>
+                <input type="file" class="dumfbtn">
+                <button class='icontxt' id='import'>Import</button>
             </header>
             <div class="area">
                 <div class="blank"></div>
                 <div id="dattable"></div>
-                <script src="js/ff-perf.js"></script>
                 <div class="blank"></div>
+                <script src="js/ff-perf.js"></script>
             </div>
         </section>
 
@@ -135,7 +132,6 @@
             <div class="area">
                 <div class="blank"></div>
                 <div id="datgraph"></div>
-                <script src="js/ff-perf.js"></script>
                 <div class="blank"></div>
             </div>
         </section>
