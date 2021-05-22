@@ -8,6 +8,7 @@ var config = {
 
 var bundleConfig = Object.assign({}, config,{
     mode: 'development',
+    devtool: "inline-source-map",
     entry: ['./js/design.js', './js/ff-perf.js'],
     module: {
         rules: [
@@ -36,6 +37,7 @@ var bundleConfig = Object.assign({}, config,{
 
 var dataConfig = Object.assign({}, config,{
     mode: 'development',
+    devtool: "inline-source-map",
     entry: ['./js/data.js'],
     module: {
         rules: [
