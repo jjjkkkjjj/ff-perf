@@ -42,7 +42,7 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 
 ```
 npm install -g webpack webpack-cli
-npm install --save-dev webpack webpack-cli jquery jsdom c3 jsgrid css-loader style-loader
+npm install --save-dev webpack webpack-cli jquery jsdom c3 gridjs css-loader style-loader
 bower install jquery js-grid c3 papaparse
 ```
 

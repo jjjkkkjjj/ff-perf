@@ -1,6 +1,3 @@
-var $;
-$ = require('jquery');
-
 // load contents.json file
 $(function() {
     $.getJSON("js/contents.json" , function(d) {
