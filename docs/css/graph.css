@@ -1,3 +1,8 @@
+/* export button */
+button#export::before {
+    background: url("../images/export.png") no-repeat scroll 0 0 / 100% auto rgba(0, 0, 0, 0);
+}
+
 section#graph{
     grid-column-start: col2;
     grid-column-end: colend;
