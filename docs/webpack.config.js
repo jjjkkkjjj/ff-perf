@@ -1,15 +1,18 @@
 const path = require('path');
 var webpack = require("webpack");
 
+
 var config = {
     // TODO: Add common Configuration
-    module: {},
+    module: {}
 };
 
 var bundleConfig = Object.assign({}, config,{
     mode: 'development',
+    // for debug
     devtool: "inline-source-map",
     entry: ['./js/design.js', './js/ff-perf.js'],
+    // to load css file and js
     module: {
         rules: [
           { 
@@ -23,12 +26,14 @@ var bundleConfig = Object.assign({}, config,{
           },
         ],
       },
+      // load jquery
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
         })
     ],
+
     output: {
         filename: 'bundle.js',
         path: path.join(__dirname, 'dest/')
@@ -37,8 +42,10 @@ var bundleConfig = Object.assign({}, config,{
 
 var dataConfig = Object.assign({}, config,{
     mode: 'development',
+    // for debug
     devtool: "inline-source-map",
     entry: ['./js/data.js'],
+    // to load css file and js
     module: {
         rules: [
           { 
@@ -52,12 +59,14 @@ var dataConfig = Object.assign({}, config,{
           },
         ],
       },
+    // load jquery
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
         })
     ],
+
     output: {
         filename: 'data.js',
         path: path.join(__dirname, 'dest/')
