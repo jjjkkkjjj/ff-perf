@@ -1,6 +1,6 @@
 /* export button */
 button#export::before {
-    background: url("../images/export.png") no-repeat scroll 0 0 / 100% auto rgba(0, 0, 0, 0);
+    background: url("../assets/export.png") no-repeat scroll 0 0 / 100% auto rgba(0, 0, 0, 0);
 }
 
 section#graph{
