@@ -3,7 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,bower
 
 ### source js ###
-js/*
+#js/*
 
 ### Bower ###
 bower_components/*
