@@ -40,6 +40,10 @@ var DateField = function(config) {
 jsGrid.fields.dateField = DateField;
 */
 
+/**
+ * Update graph from Object Array.
+ * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
+ */
 function updateGraph(data){
 
 
@@ -67,8 +71,15 @@ function updateGraph(data){
 // global function to call this from data.js
 window.updateGraph = updateGraph;
 
-
-function updateAll(data){
+/**
+ * Update all contents from csv read by Papaparse
+ * @param {Object} csv data: Array, errors: Array, meta: Array
+ */
+function updateAll(csv){
+    var data = [];
+    for (const line of csv.data){
+        data.push({"Date": line[0], "TRIMP": line[1]});
+    }
     window.updateTable(data);
     window.updateGraph(data);
 }

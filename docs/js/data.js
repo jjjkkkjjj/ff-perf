@@ -10,24 +10,43 @@ $('.icontxt#import').on('click', function(){
 });
 $('.dumfbtn').change(function(){
     const file = this.files[0];
-    //$.get(file, function (data) {
-    //    var csvdata = Papa.parse(data);
-    //    console.log(csvdata);
-    //});
-    var reader = new FileReader();
-    reader.onload = function(event) {
-        var csv = papa.parse(event.target.result);  
-        data = [];
-        for (const line of csv.data){
-            data.push({"Date": line[0], "TRIMP": line[1]});
-        }
-        // update table and graph
-        window.updateAll(data);
-    }
-    reader.readAsText(file)
-
+    parseCSVAndUpdate_from_DOM(file);
 });
 
+/**
+ * Parse CSV from a selected file and update contents
+ * @param {File} file The File object from DOM
+ */
+function parseCSVAndUpdate_from_DOM(file){
+    var reader = new FileReader();
+    // async
+    reader.onload = function(event) {
+        var csv = papa.parse(event.target.result);  
+        window.updateAll(csv);
+    }
+
+    // call above onload function asynchronously
+    reader.readAsText(file);
+}
+
+/**
+ * Parse CSV from path and update contents
+ * @param {String} str The csv path
+ */
+function parseCSVAndUpdate_from_string(path){
+    fetch(path)
+        .then(response => response.text())
+        .then(str => {
+            // async
+            var csv = papa.parse(str);
+            window.updateAll(csv);
+    });
+}
+
+/**
+ * Update table from Object Array.
+ * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
+ */
 function updateTable(data){
     // update global variable
     window.data = data;
@@ -52,13 +71,9 @@ function updateTable(data){
 window.updateTable = updateTable;
 
 
-//========== show table ===========
-// table data
-var defaultdata = [
-    { "Date": "2021/05/02", "TRIMP": 25},
-    { "Date": "2021/05/03", "TRIMP": 45},
-    { "Date": "2021/05/05", "TRIMP": 29},
-];
+/**
+ * Call this function on loaded Dom
+ */
 $(window).ready(function() {
-    window.updateAll(defaultdata);
+    parseCSVAndUpdate_from_string('assets/default.csv');
 });
