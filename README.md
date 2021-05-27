@@ -27,7 +27,7 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 \usepackage{enumitem} 
 
 \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries The longest label}]
-  \item [Performance] $p(t) = k_1g(t) + k_2h(t)$
+  \item [Performance] $p(t) = k_1g(t) - k_2h(t)$
   \item [Fitness] $g(t) = w(t)\exp{\left(-\frac{1}{\tau_1}\right)}$
   \item [Fatigue] $h(t) = w(t)\exp{\left(-\frac{1}{\tau_2}\right)}$
   \item [$w(t)$] TRIMP
