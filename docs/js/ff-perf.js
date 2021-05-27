@@ -47,9 +47,9 @@ jsGrid.fields.dateField = DateField;
  * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
  */
 function updateGraph(data){
-    var fatigues = calcff(data, 10);
-    var fitnesses = calcff(data, 45);
-    var performances = calcPerformance(fitnesses, fatigues, 1, 2);
+    var fatigues = calcff(data, 10, 2);
+    var fitnesses = calcff(data, 45, 1);
+    var performances = calcPerformance(fitnesses, fatigues);
     
     // show graph
     var chart = c3.generate({
@@ -79,57 +79,45 @@ window.updateGraph = updateGraph;
 /**
  * Update graph from Object Array.
  * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
+ * @param {Float} tau The time coefficient
+ * @param {Float} weight The weight
  * @returns {Array} the convolution Array between damping function and TRIMP
  */
-function calcff(data, tau){
+function calcff(data, tau, weight){
     var firstdate = moment(data[0].Date);
-    var exps = [];
+    var days = [];
     var trimps = [];
     for (const d of data) {
         var currdate = moment(d.Date); 
         var day = currdate.diff(firstdate, 'days');
-        exps.push(Math.exp(-day/tau));
+        days.push(day);
         trimps.push(d.TRIMP);
     }
 
     // convolution
     // exps * trimps
-    trimps = trimps.reverse();
-    var conv = [];
-    for (var i = 0; i < (exps.length + trimps.length - 1); i++){
-        var startInd = i - trimps.length + 1;
-        var value = 0.0;
-        for (var tInd = 0; tInd < trimps.length; tInd++){
-            var eInd = startInd + tInd;
-            if (eInd < 0){
-                value += 0;
-            }
-            else if (eInd < exps.length){
-                value += exps[eInd]*trimps[tInd];
-            }
-            else{
-                value += 0;
-            }
-        }
-        conv.push(value);
+    var convs = [];
+    convs.push(weight*trimps[0]);
+    for (var i = 1; i < days.length; i++){
+        var dt = days[i] - days[i-1];
+        var c = weight*trimps[i] + convs[i-1]*Math.exp(-dt/tau);
+        convs.push(c);
     }
 
-    return conv;
+    return convs;
 }
 
 /**
  * Calculate performances.
  * @param {Array} fitnesses The fitness array.
  * @param {Array} fatigues The fatigue array.
- * @param {Float} k_fit The coefficient value of fitness.
- * @param {Float} k_fat The coefficient value of fatigue.
  * @returns {Array} The performance array.
  */
-function calcPerformance(fitnesses, fatigues, k_fit, k_fat){
+function calcPerformance(fitnesses, fatigues){
     // fitnesses and fatigues must have a same size.
     var performances = [];
     for (var i = 0; i < fitnesses.length; i++){
-        performances.push(k_fit*fitnesses[i] - k_fat*fatigues[i]);
+        performances.push(fitnesses[i] - fatigues[i]);
     }
     return performances;
 }
