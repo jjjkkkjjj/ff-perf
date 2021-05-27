@@ -69,7 +69,8 @@ function updateGraph(data){
             ['Fitnesses'].concat(fitnesses),
             ['Fatigues'].concat(fatigues),
             ['Performances'].concat(performances)
-        ]
+        ],
+        type: "spline",
         }
     });
 }
