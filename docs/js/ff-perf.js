@@ -85,11 +85,11 @@ window.updateGraph = updateGraph;
  * @returns {Array} the convolution Array between damping function and TRIMP
  */
 function calcff(data, tau, weight){
-    var firstdate = moment(data[0].Date);
+    var firstdate = moment(data[0].Date, ["MM-DD-YYYY", "YYYY-MM-DD", "YYYY/MM/DD"]);
     var days = [];
     var trimps = [];
     for (const d of data) {
-        var currdate = moment(d.Date); 
+        var currdate = moment(d.Date, ["MM-DD-YYYY", "YYYY-MM-DD", "YYYY/MM/DD"]); 
         var day = currdate.diff(firstdate, 'days');
         days.push(day);
         trimps.push(d.TRIMP);
