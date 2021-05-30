@@ -12,7 +12,7 @@ require('moment');
 
 const papa = require('papaparse');
 
-// load csv
+// import csv
 $('.icontxt#import').on('click', function(){
     $('.dumfbtn').click();
 });
@@ -52,7 +52,6 @@ function parseCSVAndUpdate_from_string(path){
 }
 
 // date
-// https://codepen.io/beaver71/pen/OzPXQX
 $(function() { 
     var DateField = function(config) {
         jsGrid.Field.call(this, config);
@@ -63,7 +62,7 @@ $(function() {
             return new Date(date1) - new Date(date2);
         },
         itemTemplate: function(value) {
-            return moment(new Date(value).toDateString()).format("YYYY/MM/DD");
+            return moment(new Date(value), 'YYYY-MM-DD').format("YYYY/MM/DD");
         },
         insertTemplate: function(value) {
             return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
@@ -72,10 +71,10 @@ $(function() {
             return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
         },
         insertValue: function() {
-            return moment(this._insertPicker.datepicker("getDate").toISOString()).format("YYYY/MM/DD");
+            return moment(this._insertPicker.datepicker("getDate"), 'YYYY-MM-DD').format("YYYY/MM/DD");
         },
         editValue: function() {
-            return moment(this._editPicker.datepicker("getDate").toISOString()).format("YYYY/MM/DD");
+            return moment(this._editPicker.datepicker("getDate"), 'YYYY-MM-DD').format("YYYY/MM/DD");
         }
     });
 
