@@ -57,7 +57,7 @@ div.grid {
 
     display: grid;
     grid-template-columns: [col1] 35% [col2] 65% [colend];
-    grid-template-rows: [row1] 30% [row2] 70% [rowend];
+    grid-template-rows: [row1] 40% [row2] 60% [rowend];
 }
 
 /* section */
