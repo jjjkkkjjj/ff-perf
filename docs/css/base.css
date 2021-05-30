@@ -29,6 +29,17 @@
     --border-radius: 5px;
 }
 
+body {
+    background-color: var(--bg-sub-color);
+}
+
+section > :last-child {
+    background-color: white;
+
+    margin: var(--main-margin);
+    padding: calc(2*var(--main-margin));
+}
+
 /* scroll */
 div.scroll {
     height: 100%;

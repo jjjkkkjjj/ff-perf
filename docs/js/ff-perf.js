@@ -16,8 +16,13 @@ function showSum() {
  * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
  */
 function updateGraph(data){
-    var fatigues = calcff(data, 10, 2);
-    var fitnesses = calcff(data, 45, 1);
+    var k1 = $('#k1').val();
+    var k2 = $('#k2').val();
+    var tau1 = $('#tau1').val();
+    var tau2 = $('#tau2').val();
+
+    var fitnesses = calcff(data, tau1, k1);
+    var fatigues = calcff(data, tau2, k2);
     var performances = calcPerformance(fitnesses, fatigues);
     
     // show graph

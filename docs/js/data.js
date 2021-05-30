@@ -98,7 +98,7 @@ function updateTable(data){
         data: data,
     
         fields: [
-            { name: "Date", type: "dateField", align: "center", validate: "required" },
+            { name: "Date", type: "dateField", width: "130", align: "center", validate: "required" },
             { name: "TRIMP", type: "number", align: "center", validate: "required" },
             { type: "control" }
         ]

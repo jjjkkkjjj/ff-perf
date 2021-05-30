@@ -1,6 +1,9 @@
 {
     "params": [
-        { "value": "default", "text": "Default"},
-        { "value": "100m", "text": "100m"}
+        { "value": "default", "text": "Default", 
+            "params": {"k1": 1.0, "k2": 2.0, "tau1": 45, "tau2": 15}},
+            
+        { "value": "1500m Run", "text": "1500m Run",
+            "params": {"k1": 1.0, "k2": 1.9, "tau1": 45, "tau2": 15}}
     ]
 }
