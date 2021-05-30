@@ -1,3 +1,8 @@
+import 'jquery-ui/ui/widgets/autocomplete.js';
+import 'jquery-ui/ui/widgets/datepicker.js';
+import 'jquery-ui/ui/i18n/datepicker-es.js';
+import 'jquery-ui/themes/base/all.css';
+
 require('jsgrid');
 require('jsgrid/dist/jsgrid.min.css');
 require('jsgrid/dist/jsgrid-theme.min.css');
@@ -43,6 +48,37 @@ function parseCSVAndUpdate_from_string(path){
     });
 }
 
+// date
+// https://codepen.io/beaver71/pen/OzPXQX
+$(function() { 
+    var DateField = function(config) {
+        jsGrid.Field.call(this, config);
+        };
+
+        DateField.prototype = new jsGrid.Field({
+        sorter: function(date1, date2) {
+            return new Date(date1) - new Date(date2);
+        },
+        itemTemplate: function(value) {
+            return new Date(value).toDateString();
+        },
+        insertTemplate: function(value) {
+            return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+        },
+        editTemplate: function(value) {
+            return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+        },
+        insertValue: function() {
+            return this._insertPicker.datepicker("getDate").toISOString();
+        },
+        editValue: function() {
+            return this._editPicker.datepicker("getDate").toISOString();
+        }
+        });
+
+    jsGrid.fields.dateField = DateField;
+});
+
 /**
  * Update table from Object Array.
  * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
@@ -62,7 +98,7 @@ function updateTable(data){
         data: data,
     
         fields: [
-            { name: "Date", type: "text", width: 150, align: "center", validate: "required" },
+            { name: "Date", type: "dateField", width: 150, align: "center", validate: "required" },
             { name: "TRIMP", type: "number", width: 50, align: "center", validate: "required" },
             { type: "control" }
         ]
