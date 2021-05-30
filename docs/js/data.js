@@ -1,6 +1,6 @@
 import 'jquery-ui/ui/widgets/autocomplete.js';
 import 'jquery-ui/ui/widgets/datepicker.js';
-import 'jquery-ui/ui/i18n/datepicker-es.js';
+import 'jquery-ui/ui/i18n/datepicker-en-GB.js';
 import 'jquery-ui/themes/base/all.css';
 
 require('jsgrid');
