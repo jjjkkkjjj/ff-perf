@@ -135,7 +135,8 @@ function updateTable(data){
             }
             
             // insert data
-            window.data.push(args.item);
+            // below code is not needed.
+            //window.data.push(args.item);
             // update
             window.updateFromContent();
         }
