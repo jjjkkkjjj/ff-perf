@@ -118,7 +118,19 @@ function updateAll(csv){
         data.push({"Date": datestr, "TRIMP": trimp});
     });
 
+    window.data = data;
+    window.sortdata();
+
     window.updateTable(data);
     window.updateGraph(data);
 }
 window.updateAll = updateAll;
+
+function updateFromContent(){
+    window.sortdata();
+    var data = window.data;
+
+    window.updateTable(data);
+    window.updateGraph(data);
+}
+window.updateFromContent = updateFromContent;

@@ -85,7 +85,6 @@ $(function() {
  */
 function updateTable(data){
     // update global variable
-    window.data = data;
     $("#dattable").jsGrid({
         width: "90%",
         height: "auto",
@@ -101,11 +100,56 @@ function updateTable(data){
             { name: "Date", type: "dateField", width: "130", align: "center", validate: "required" },
             { name: "TRIMP", type: "number", align: "center", validate: "required" },
             { type: "control" }
-        ]
+        ],
+
+        // callback
+        // deleted event
+        onItemDeleted: function(args) {
+            // cancel deletion of the item with 'protected' field
+            if(args.item.protected) {
+                args.cancel = true;
+            }
+            
+            // remove data
+            window.data.splice(args.itemIndex, 1);
+            // update
+            window.updateFromContent();
+        },
+        // updated event
+        onItemUpdated: function(args) {
+            // cancel deletion of the item with 'protected' field
+            if(args.item.protected) {
+                args.cancel = true;
+            }
+            
+            // update content
+            window.data[args.itemIndex] = args.item;
+            // update
+            window.updateFromContent();
+        },
+        // inserted event
+        onItemInserted: function(args) {
+            // cancel deletion of the item with 'protected' field
+            if(args.item.protected) {
+                args.cancel = true;
+            }
+            
+            // insert data
+            window.data.push(args.item);
+            // update
+            window.updateFromContent();
+        }
+        
     });
 }
 window.updateTable = updateTable;
 
+function sortdata(){
+    window.data.sort((d1, d2) => {
+        return new Date(d1.Date) - new Date(d2.Date);
+    })
+}
+window.sortdata = sortdata;
 
 /**
  * Call this function on loaded Dom
