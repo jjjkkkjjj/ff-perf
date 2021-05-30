@@ -40,6 +40,39 @@ $(function() {
   $('#selparams').change(function() {
     updateParams();
   });
+
+  $('#k1').change(function(){
+    var val = parseFloat($(this).val());
+    if (isNaN(val)){
+      return;
+    }
+
+    window.updateFromContent();
+  });
+  $('#k2').change(function(){
+    var val = parseFloat($(this).val());
+    if (isNaN(val)){
+      return;
+    }
+
+    window.updateFromContent();
+  });
+  $('#tau1').change(function(){
+    var val = parseFloat($(this).val());
+    if (isNaN(val)){
+      return;
+    }
+    
+    window.updateFromContent();
+  });
+  $('#tau2').change(function(){
+    var val = parseFloat($(this).val());
+    if (isNaN(val)){
+      return;
+    }
+
+    window.updateFromContent();
+  });
 });
 
 
