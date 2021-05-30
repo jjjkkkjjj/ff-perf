@@ -29,6 +29,15 @@
     --border-radius: 5px;
 }
 
+/* scroll */
+div.scroll {
+    height: 100%;
+    font-size: var(--param-fontsize);
+
+    margin: var(--main-margin);
+    overflow: auto;
+}
+
 /* grid */
 div.grid {
     width: auto;

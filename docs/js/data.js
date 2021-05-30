@@ -87,7 +87,7 @@ function updateTable(data){
     // update global variable
     window.data = data;
     $("#dattable").jsGrid({
-        width: "100%",
+        width: "90%",
         height: "auto",
     
         inserting: true,
@@ -98,8 +98,8 @@ function updateTable(data){
         data: data,
     
         fields: [
-            { name: "Date", type: "dateField", width: 150, align: "center", validate: "required" },
-            { name: "TRIMP", type: "number", width: 50, align: "center", validate: "required" },
+            { name: "Date", type: "dateField", align: "center", validate: "required" },
+            { name: "TRIMP", type: "number", align: "center", validate: "required" },
             { type: "control" }
         ]
     });

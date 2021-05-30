@@ -10,3 +10,7 @@ section#graph{
     grid-row-end: rowend;
     position: relative;
 }
+
+div#datgraph {
+    font-size: 18px;
+}

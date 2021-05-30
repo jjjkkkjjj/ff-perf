@@ -6,14 +6,6 @@ section#settings{
     position: relative;
 }
 
-div.scroll {
-    height: 100%;
-    font-size: var(--param-fontsize);
-
-    margin: var(--main-margin);
-    overflow: auto;
-}
-
 /* settings header */
 header.sethead {
     font-size: var(--sethead-fontsize);
