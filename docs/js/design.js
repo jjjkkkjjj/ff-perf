@@ -1,18 +1,3 @@
-// load contents.json file
-$(function() {
-    $.getJSON("assets/contents.json" , function(d) {
-        var data = JSON.parse(JSON.stringify(d));
-
-        // append option
-        data.params.forEach(function(b) {
-            $("#selparams").append('<option value="' + b.value + '">' + b.text + '</option>');
-        });
-        // set data
-        updateParams();
-    });
-  }
-);
-
 
 function updateParams(){
   $.getJSON("assets/contents.json" , function(d) {
@@ -26,7 +11,7 @@ function updateParams(){
     $('#tau2').val(selectedParam.tau2);
   });
 }
-
+window.updateParams = updateParams;
 
 $(function() {
   // show/hide tips

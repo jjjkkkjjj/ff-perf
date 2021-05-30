@@ -6,6 +6,9 @@ import 'jquery-ui/themes/base/all.css';
 require('jsgrid');
 require('jsgrid/dist/jsgrid.min.css');
 require('jsgrid/dist/jsgrid-theme.min.css');
+import moment from 'moment';
+require('moment');
+
 
 const papa = require('papaparse');
 
@@ -60,7 +63,7 @@ $(function() {
             return new Date(date1) - new Date(date2);
         },
         itemTemplate: function(value) {
-            return new Date(value).toDateString();
+            return moment(new Date(value).toDateString()).format("YYYY/MM/DD");
         },
         insertTemplate: function(value) {
             return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
@@ -69,12 +72,12 @@ $(function() {
             return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
         },
         insertValue: function() {
-            return this._insertPicker.datepicker("getDate").toISOString();
+            return moment(this._insertPicker.datepicker("getDate").toISOString()).format("YYYY/MM/DD");
         },
         editValue: function() {
-            return this._editPicker.datepicker("getDate").toISOString();
+            return moment(this._editPicker.datepicker("getDate").toISOString()).format("YYYY/MM/DD");
         }
-        });
+    });
 
     jsGrid.fields.dateField = DateField;
 });
@@ -156,5 +159,20 @@ window.sortdata = sortdata;
  * Call this function on loaded Dom
  */
 $(window).ready(function() {
+    $.ajaxSetup({ async: false });
+    // below reading json code will be done async due to above code
+    $.getJSON("assets/contents.json" , function(d) {
+        var data = JSON.parse(JSON.stringify(d));
+
+        // append option
+        data.params.forEach(function(b) {
+            $("#selparams").append('<option value="' + b.value + '">' + b.text + '</option>');
+        });
+        // set data
+        window.updateParams();
+    });
+    // revert async setting
+    $.ajaxSetup({ async: true }); 
+
     parseCSVAndUpdate_from_string('assets/default.csv');
 });

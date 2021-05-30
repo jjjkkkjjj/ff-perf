@@ -16,49 +16,103 @@ function showSum() {
  * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
  */
 function updateGraph(data){
-    var k1 = $('#k1').val();
-    var k2 = $('#k2').val();
-    var tau1 = $('#tau1').val();
-    var tau2 = $('#tau2').val();
+    var k1 = parseFloat($('#k1').val());
+    var k2 = parseFloat($('#k2').val());
+    var tau1 = parseFloat($('#tau1').val());
+    var tau2 = parseFloat($('#tau2').val());
 
-    var fitnesses = calcff(data, tau1, k1);
-    var fatigues = calcff(data, tau2, k2);
+    if (isNaN(k1) || isNaN(k2) || isNaN(tau1) || isNaN(tau2)){
+        return;
+    }
+
+    var dtr = parseDaysTRIMPs(data);
+    var days = dtr[0];
+    var trimps = dtr[1];
+    var fitnesses = calcff(days, trimps, tau1, k1);
+    var fatigues = calcff(days, trimps, tau2, k2);
     var performances = calcPerformance(fitnesses, fatigues);
     
-    // show graph
-    var chart = c3.generate({
-        bindto: '#datgraph',
-        size: {
-            height: $("#datgraph").height(),
-            width: $("datgraph").width()
-        },
-        padding: {
-            top: 40,
-            right: 40,
-            bottom: 40,
-            left: 40,
-        },
-        data: {
-        columns: [
-            ['Fitnesses'].concat(fitnesses),
-            ['Fatigues'].concat(fatigues),
-            ['Performances'].concat(performances)
-        ],
-        type: "spline",
-        }
-    });
+
+    // calculate a crossing point between fitnesses and fatigues
+    var crsIndex = calcCrossingPointIndex(fitnesses, fatigues);
+
+    if (crsIndex == -1){
+        // show graph
+        var chart = c3.generate({
+            bindto: '#datgraph',
+            size: {
+                height: $("#datgraph").height(),
+                width: $("datgraph").width()
+            },
+            padding: {
+                top: 40,
+                right: 40,
+                bottom: 40,
+                left: 40,
+            },
+            data: {
+                columns: [
+                    ['days'].concat(),
+                    ['Fitnesses'].concat(fitnesses),
+                    ['Fatigues'].concat(fatigues),
+                    ['Performances'].concat(performances)
+                ],
+                type: "spline",
+            },
+            xs: {
+                Fitnesses: "days",
+                Fatigues: "days",
+                Performances: "days",
+            }
+        });
+    }
+    else{
+        var crsPt = days[crsIndex];
+        // show graph with drawing a line for crossing x axis
+        var chart = c3.generate({
+            bindto: '#datgraph',
+            size: {
+                height: $("#datgraph").height(),
+                width: $("datgraph").width()
+            },
+            padding: {
+                top: 40,
+                right: 40,
+                bottom: 40,
+                left: 40,
+            },
+            data: {
+                columns: [
+                    ['Fitnesses'].concat(fitnesses),
+                    ['Fatigues'].concat(fatigues),
+                    ['Performances'].concat(performances)
+                ],
+                type: "spline",
+            },
+            xs: {
+                Fitnesses: "days",
+                Fatigues: "days",
+                Performances: "days",
+            },
+            grid: {
+                x: {
+                    lines: [
+                        {value: crsPt, text: 'Crossing Point', position: 'middle'},
+                    ]
+                }
+            }
+        });
+    }
 }
 // global function to call this from data.js
 window.updateGraph = updateGraph;
 
 /**
- * Update graph from Object Array.
+ * Calculate days and trimps from data
  * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
- * @param {Float} tau The time coefficient
- * @param {Float} weight The weight
- * @returns {Array} the convolution Array between damping function and TRIMP
+ * @returns {Array} [days, trimps]
  */
-function calcff(data, tau, weight){
+function parseDaysTRIMPs(data){
     var firstdate = moment(data[0].Date, ["MM-DD-YYYY", "YYYY-MM-DD", "YYYY/MM/DD"]);
     var days = [];
     var trimps = [];
@@ -69,6 +123,18 @@ function calcff(data, tau, weight){
         trimps.push(d.TRIMP);
     }
 
+    return [days, trimps];
+}
+
+/**
+ * Update graph from Object Array.
+ * @param {Array} days The Date Array.
+ * @param {Array} trimps The TRIMP Array.
+ * @param {Float} tau The time coefficient
+ * @param {Float} weight The weight
+ * @returns {Array} the convolution Array between damping function and TRIMP
+ */
+function calcff(days, trimps, tau, weight){
     // convolution
     // exps * trimps
     var convs = [];
@@ -80,6 +146,22 @@ function calcff(data, tau, weight){
     }
 
     return convs;
+}
+
+/**
+ * Calculate a crossing point index.
+ * @param {Array} fitnesses The fitness array.
+ * @param {Array} fatigues The fatigue array.
+ * @returns {Int} The crossing point's index. If the crossing point is none, return -1.
+ */
+function calcCrossingPointIndex(fitnesses, fatigues){
+    // fitnesses and fatigues must have a same size.
+    for (var i = 0; i < fitnesses.length; i++){
+        if (fatigues[i] < fitnesses[i]){
+            return i;
+        }
+    }
+    return -1;
 }
 
 /**
