@@ -1,15 +1,16 @@
-require('c3/c3.css');
-import * as c3  from 'c3';
+var Chart = require('chart.js');
 import moment from 'moment';
 require('moment');
+import saveAs from 'file-saver';
 
-function showSum() {
-    var num1 = 1;
-    var num2 = 2;
-    var sum = num1 + num2;
-    alert(sum);
-}
-
+$(document).ready(function() {
+    $('#export').click(function() {
+        var canvas = $('#datgraph').get(0);
+        canvas.toBlob(function(blob) {
+            saveAs(blob, "ff-perf.png");
+        });
+    });
+});
 
 /**
  * Update graph from Object Array.
@@ -35,74 +36,53 @@ function updateGraph(data){
 
     // calculate a crossing point between fitnesses and fatigues
     var crsIndex = calcCrossingPointIndex(fitnesses, fatigues);
+    
+    // draw
+    // background
+    var backgroundColor = 'white';
+    Chart.plugins.register({
+        beforeDraw: function(c) {
+            var ctx = c.chart.ctx;
+            ctx.fillStyle = backgroundColor;
+            ctx.fillRect(0, 0, c.chart.width, c.chart.height);
+        }
+    });
+    // chart
+    var canvas = $('#datgraph').get(0);
+    var myChart = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: days,
+            datasets: [
+                {
+                    label: 'Fitnesses',
+                    data: fitnesses,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderColor: 'rgba(255, 0, 0, 0.5)',
+                    pointBackgroundColor: 'black'
+                },
+                {
+                    label: 'Fatigues',
+                    data: fatigues,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderColor: 'rgba(255, 0, 0, 0.5)',
+                    pointBackgroundColor: 'black'
+                },
+                {
+                    label: 'Performances',
+                    data: performances,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderColor: 'rgba(255, 0, 0, 0.5)',
+                    pointBackgroundColor: 'black'
+                },
+            ]
+        }
+    });
 
-    if (crsIndex == -1){
-        // show graph
-        var chart = c3.generate({
-            bindto: '#datgraph',
-            size: {
-                height: $("#datgraph").height(),
-                width: $("datgraph").width()
-            },
-            padding: {
-                top: 40,
-                right: 40,
-                bottom: 40,
-                left: 40,
-            },
-            data: {
-                columns: [
-                    ['days'].concat(),
-                    ['Fitnesses'].concat(fitnesses),
-                    ['Fatigues'].concat(fatigues),
-                    ['Performances'].concat(performances)
-                ],
-                type: "spline",
-            },
-            xs: {
-                Fitnesses: "days",
-                Fatigues: "days",
-                Performances: "days",
-            }
-        });
-    }
-    else{
+    if (crsIndex > -1){
         var crsPt = days[crsIndex];
-        // show graph with drawing a line for crossing x axis
-        var chart = c3.generate({
-            bindto: '#datgraph',
-            size: {
-                height: $("#datgraph").height(),
-                width: $("datgraph").width()
-            },
-            padding: {
-                top: 40,
-                right: 40,
-                bottom: 40,
-                left: 40,
-            },
-            data: {
-                columns: [
-                    ['Fitnesses'].concat(fitnesses),
-                    ['Fatigues'].concat(fatigues),
-                    ['Performances'].concat(performances)
-                ],
-                type: "spline",
-            },
-            xs: {
-                Fitnesses: "days",
-                Fatigues: "days",
-                Performances: "days",
-            },
-            grid: {
-                x: {
-                    lines: [
-                        {value: crsPt, text: 'Crossing Point', position: 'middle'},
-                    ]
-                }
-            }
-        });
     }
+    
 }
 // global function to call this from data.js
 window.updateGraph = updateGraph;

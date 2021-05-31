@@ -21,6 +21,14 @@ $('.dumfbtn').change(function(){
     parseCSVAndUpdate_from_DOM(file);
 });
 
+// export to png
+$('.icontxt#export').on('click', function(){
+    /*
+    $("#myChart").get(0).toBlob(function(blob) {
+        saveAs(blob, "chart_1.png");
+    });*/
+});
+
 /**
  * Parse CSV from a selected file and update contents
  * @param {File} file The File object from DOM
@@ -52,6 +60,7 @@ function parseCSVAndUpdate_from_string(path){
 }
 
 // date
+// https://codepen.io/beaver71/pen/OzPXQX
 $(function() { 
     var DateField = function(config) {
         jsGrid.Field.call(this, config);

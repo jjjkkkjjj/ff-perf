@@ -62,6 +62,7 @@ $(function() {
 
 
 // set paramtips position next to hinticon
+
 $(document).ready(function() {
   $("#paramtips").css("left", $("#hinticon").offset().left + $("#hinticon").outerWidth());
   $("#paramtips").css("top",  -($("#hinticon").position().top + $("#hinticon").height()));
