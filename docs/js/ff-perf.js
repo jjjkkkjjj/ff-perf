@@ -38,16 +38,6 @@ function updateGraph(data){
     var crsIndex = calcCrossingPointIndex(fitnesses, fatigues);
     
     // draw
-    // background
-    /*
-    var backgroundColor = 'white';
-    Chart.plugins.register({
-        beforeDraw: function(c) {
-            var ctx = c.chart.ctx;
-            ctx.fillStyle = backgroundColor;
-            ctx.fillRect(0, 0, c.chart.width, c.chart.height);
-        }
-    });*/
     // chart
     var chart = {
         type: 'line',
@@ -80,13 +70,15 @@ function updateGraph(data){
                 },
             ]
         },
-        // add crossing point line
+        
         options: {
-            //Set the index of the value where you want to draw the line
+            // add crossing point line
+            // Set the index of the value where you want to draw the line
             lineAtIndex: crsIndex,
             legend: {
               display: true
-            }
+            },
+            responsive: true
         }
     }
     
@@ -96,6 +88,15 @@ function updateGraph(data){
 
     var ctx = $('#datgraph').get(0);
 
+    // background
+    var backgroundColor = 'white';
+    Chart.plugins.register({
+        beforeDraw: function(c) {
+            var ctx = c.chart.ctx;
+            ctx.fillStyle = backgroundColor;
+            ctx.fillRect(0, 0, c.chart.width, c.chart.height);
+        }
+    });
     Chart.helpers.extend(Chart.controllers.line.prototype, {
         draw: function () {
         
