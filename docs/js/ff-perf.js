@@ -39,6 +39,7 @@ function updateGraph(data){
     
     // draw
     // background
+    /*
     var backgroundColor = 'white';
     Chart.plugins.register({
         beforeDraw: function(c) {
@@ -46,10 +47,9 @@ function updateGraph(data){
             ctx.fillStyle = backgroundColor;
             ctx.fillRect(0, 0, c.chart.width, c.chart.height);
         }
-    });
+    });*/
     // chart
-    var canvas = $('#datgraph').get(0);
-    var myChart = new Chart(canvas, {
+    var chart = {
         type: 'line',
         data: {
             labels: days,
@@ -57,32 +57,77 @@ function updateGraph(data){
                 {
                     label: 'Fitnesses',
                     data: fitnesses,
-                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                    borderColor: 'rgba(255, 0, 0, 0.5)',
-                    pointBackgroundColor: 'black'
+                    backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                    borderColor: 'rgba(0, 0, 255, 0.5)',
+                    fill: false,
+                    pointBackgroundColor: 'rgb(0, 0, 255)'
                 },
                 {
                     label: 'Fatigues',
                     data: fatigues,
                     backgroundColor: 'rgba(255, 0, 0, 0.2)',
                     borderColor: 'rgba(255, 0, 0, 0.5)',
-                    pointBackgroundColor: 'black'
+                    fill: false,
+                    pointBackgroundColor: 'rgb(255, 0, 0)'
                 },
                 {
                     label: 'Performances',
                     data: performances,
-                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                    borderColor: 'rgba(255, 0, 0, 0.5)',
-                    pointBackgroundColor: 'black'
+                    backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                    borderColor: 'rgba(0, 255, 0, 0.5)',
+                    fill: false,
+                    pointBackgroundColor: 'rgb(0, 255, 0)'
                 },
             ]
+        },
+        // add crossing point line
+        options: {
+            //Set the index of the value where you want to draw the line
+            lineAtIndex: crsIndex,
+            legend: {
+              display: true
+            }
+        }
+    }
+    
+
+    // ref: https://stackoverflow.com/questions/45023773/chart-js-what-is-the-new-syntax-for-extending
+    var addVerticalLine = Chart.controllers.line.prototype.draw;
+
+    var ctx = $('#datgraph').get(0);
+
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+        draw: function () {
+        
+            addVerticalLine.apply(this, arguments);   
+
+            var chart = this.chart;
+            var ctx = chart.chart.ctx;
+
+            var index = chart.config.options.lineAtIndex;
+            if (index == -1){
+                return;
+            }
+            var xaxis = chart.scales['x-axis-0'];
+            var yaxis = chart.scales['y-axis-0'];
+            
+            // draw vertical line
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top + 24);
+            // color
+            ctx.strokeStyle = '#ff0000';
+            ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.textAlign = 'center';
+            ctx.fillText("Crossing Day", xaxis.getPixelForValue(undefined, index), yaxis.top + 12);
+
         }
     });
 
-    if (crsIndex > -1){
-        var crsPt = days[crsIndex];
-    }
-    
+    new Chart(ctx, chart);
 }
 // global function to call this from data.js
 window.updateGraph = updateGraph;
