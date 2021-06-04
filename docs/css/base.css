@@ -17,7 +17,7 @@
     --block-height: 44px;
 
     /* font size */
-    --title-fontsize: 24px;
+    --title-fontsize: 40px;
     --block-fontsize: 38px;
     --sethead-fontsize: 30px;
     --param-fontsize: 24px;
@@ -27,6 +27,24 @@
 
     /* border radius */
     --border-radius: 5px;
+}
+/* breakpoint specific to title */
+@media screen and (max-width: 1200px) { 
+    :root{
+        --title-fontsize: 3.5vw;
+    }
+}
+/* for tablet */
+@media screen and (max-width: 1024px) { 
+    :root{
+        --title-fontsize: 36px;
+    }
+}
+/* for phone */
+@media screen and (max-width: 599px) { 
+    :root{
+        --title-fontsize: 7.5vw;
+    }
 }
 
 body {

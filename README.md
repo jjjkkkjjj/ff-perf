@@ -17,6 +17,13 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 - Font
   - Title: Bangla MN
 
+- Responsive Breakpoint
+  - common
+    - tablet: ~`1024px`
+    - phone: ~`599px`
+  - title
+    - title: ~`1200px`
+
 ## Math
 
 ```latex

@@ -19,16 +19,18 @@ main.title{
 
 
 /* title text */
-header.titletxt{
-    width: calc(100vw - var(--title-image-width)*2 + 48px)!important;
+h1.titletxt {
+    width: calc(100vw - var(--title-image-width)*2 + 48px);
     height: inherit;
     top: 0px;
     margin: 0px;
     font-size: var(--title-fontsize);
+    line-height: 100px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    vertical-align: middle;
 
     background-color: var(--bg-main-color);
     transform: skew(-6deg);
@@ -36,8 +38,6 @@ header.titletxt{
     margin-left: -24px;
     margin-right: -24px;
     z-index: 1;
-}
-header.titletxt > h1{
 
     color: var(--text-main-color);
     text-align: center;
@@ -54,4 +54,43 @@ main.title > #workout {
 }
 main.title > #run {
     right: 0px;
+}
+
+
+/* breakpoint specific to title */
+@media screen and (max-width: 1200px) { 
+
+    h1.titletxt {
+        width: calc(100vw - 25vw*2 + 48px);
+        height: inherit;
+    }
+
+    main.title > #workout {
+        left: 0px;
+        width: 25vw;
+    }
+    main.title > #run {
+        right: 0px;
+        width: 25vw;
+    }    
+}
+/* for tablet */
+@media screen and (max-width: 1024px) { 
+
+    h1.titletxt {
+        width: 100vw;
+        height: inherit;
+
+        display: inline;
+
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    main.title > #workout {
+        display: none;
+    }
+    main.title > #run {
+        display: none;
+    }    
 }
