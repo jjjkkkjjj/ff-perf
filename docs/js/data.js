@@ -96,8 +96,14 @@ $(function() {
  */
 function updateTable(data){
     // update global variable
+    if ($(window).width() > 1024){
+        var width = "100%";
+    }
+    else{
+        var width = $('#grapharea').width();
+    }
     $("#dattable").jsGrid({
-        width: "90%",
+        width: width,
         height: "auto",
     
         inserting: true,

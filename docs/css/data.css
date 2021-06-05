@@ -12,7 +12,6 @@ section#data{
 }
 
 div#dattable {
-    width: 100%;
     height: 100%;
 
     margin: var(--main-margin);

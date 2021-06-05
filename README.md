@@ -49,7 +49,7 @@ URL: [https://jjjkkkjjj.github.io/ff-perf/](https://jjjkkkjjj.github.io/ff-perf/
 
 ```
 npm install -g webpack webpack-cli
-npm install --save-dev webpack webpack-cli jquery jquery-ui jsdom c3 gridjs css-loader style-loader url-loader papaparse moment chart.js@2.9.4 file-saver
+npm install --save-dev webpack webpack-cli jquery jquery-ui jsdom gridjs css-loader style-loader url-loader papaparse moment chart.js@2.9.4 file-saver
 ```
 
 ### build
