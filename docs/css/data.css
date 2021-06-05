@@ -20,3 +20,13 @@ div#dattable {
     font-size: 18px;
 }
 
+/* for tablet */
+@media screen and (max-width: 1024px) { 
+    section#data{
+        grid-column-start: col1;
+        grid-column-end: colend;
+        grid-row-start: row3;
+        grid-row-end: rowend;
+        position: relative;
+    }
+}

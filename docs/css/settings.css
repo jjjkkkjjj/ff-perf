@@ -86,4 +86,15 @@ div.inptxt > input {
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: var(--text-gray-color);
     opacity: 1; /* Firefox */
-  }
+}
+
+/* for tablet */
+@media screen and (max-width: 1024px) { 
+    section#settings{
+        grid-column-start: col1;
+        grid-column-end: colend;
+        grid-row-start: row2;
+        grid-row-end: row3;
+        position: relative;
+    }
+}

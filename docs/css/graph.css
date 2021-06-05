@@ -14,3 +14,20 @@ section#graph{
 div#datgraph {
     font-size: 18px;
 }
+
+/* for tablet */
+@media screen and (max-width: 1024px) { 
+    section#graph{
+        grid-column-start: col1;
+        grid-column-end: colend;
+        grid-row-start: row1;
+        grid-row-end: row2;
+        position: relative;
+    }
+}
+/* for phone */
+@media screen and (max-width: 599px) { 
+    section#graph > .scroll > .area {
+        min-width: 599px;
+    }
+}

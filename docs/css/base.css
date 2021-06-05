@@ -28,24 +28,6 @@
     /* border radius */
     --border-radius: 5px;
 }
-/* breakpoint specific to title */
-@media screen and (max-width: 1200px) { 
-    :root{
-        --title-fontsize: 3.5vw;
-    }
-}
-/* for tablet */
-@media screen and (max-width: 1024px) { 
-    :root{
-        --title-fontsize: 36px;
-    }
-}
-/* for phone */
-@media screen and (max-width: 599px) { 
-    :root{
-        --title-fontsize: 7.5vw;
-    }
-}
 
 body {
     background-color: var(--bg-sub-color);
@@ -168,4 +150,34 @@ div.area {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+/* breakpoint specific to title */
+@media screen and (max-width: 1200px) { 
+    :root{
+        --title-fontsize: 3.5vw;
+    }
+}
+/* for tablet */
+@media screen and (max-width: 1024px) { 
+    :root{
+        --title-fontsize: 36px;
+    }
+
+    /* grid */
+    div.grid {
+        width: auto;
+        height: 100vh;
+        margin: var(--main-margin);
+
+        display: grid;
+        grid-template-columns: [col1] 100% [colend];
+        grid-template-rows: [row1] 60% [row2] 40% [row3] 60% [rowend];
+    }
+}
+/* for phone */
+@media screen and (max-width: 599px) { 
+    :root{
+        --title-fontsize: 7.5vw;
+    }
 }
