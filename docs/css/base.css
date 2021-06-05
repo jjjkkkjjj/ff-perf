@@ -178,6 +178,11 @@ div.area {
 /* for phone */
 @media screen and (max-width: 599px) { 
     :root{
-        --title-fontsize: 7.5vw;
+        --title-fontsize: 28px;
+    }
+}
+@media screen and (max-width: 374px) { 
+    :root{
+        --title-fontsize: 20px;
     }
 }
