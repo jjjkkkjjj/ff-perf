@@ -3,7 +3,110 @@ import moment from 'moment';
 require('moment');
 import saveAs from 'file-saver';
 
-$(document).ready(function() {
+$(window).ready(function() {
+    // Initialize a graph
+    var chart = {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Fitnesses',
+                    data: [],
+                    backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                    borderColor: 'rgba(0, 0, 255, 0.5)',
+                    fill: false,
+                    pointBackgroundColor: 'rgb(0, 0, 255)'
+                },
+                {
+                    label: 'Fatigues',
+                    data: [],
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderColor: 'rgba(255, 0, 0, 0.5)',
+                    fill: false,
+                    pointBackgroundColor: 'rgb(255, 0, 0)'
+                },
+                {
+                    label: 'Performances',
+                    data: [],
+                    backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                    borderColor: 'rgba(0, 255, 0, 0.5)',
+                    fill: false,
+                    pointBackgroundColor: 'rgb(0, 255, 0)'
+                },
+            ]
+        },
+        
+        options: {
+            // add crossing point line
+            // Set the index of the value where you want to draw the line
+            crsIndex: -1,
+            legend: {
+              display: true
+            },
+            responsive: true,
+            scales: {
+                x: {
+                    min: 0,
+                    max: 5,
+                    ticks: {
+                        stepSize: 1
+                      }
+                }
+            }
+        }
+    }
+
+    // ref: https://stackoverflow.com/questions/45023773/chart-js-what-is-the-new-syntax-for-extending
+    var addVerticalLine = Chart.controllers.line.prototype.draw;
+
+    var ctx = $('#datgraph').get(0);
+
+    // background
+    var backgroundColor = 'white';
+    Chart.plugins.register({
+        beforeDraw: function(c) {
+            var ctx = c.chart.ctx;
+            ctx.fillStyle = backgroundColor;
+            ctx.fillRect(0, 0, c.chart.width, c.chart.height);
+        }
+    });
+    Chart.helpers.extend(Chart.controllers.line.prototype, {
+        draw: function () {
+        
+            addVerticalLine.apply(this, arguments);   
+
+            var chart = this.chart;
+            var ctx = chart.chart.ctx;
+
+            var index = chart.config.options.crsIndex;
+            if (index == -1){
+                return;
+            }
+            var xaxis = chart.scales['x-axis-0'];
+            var yaxis = chart.scales['y-axis-0'];
+            
+            // draw vertical line
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top + 24);
+            // color
+            ctx.strokeStyle = '#ff0000';
+            ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+            ctx.stroke();
+            ctx.restore();
+
+            ctx.textAlign = 'center';
+            ctx.fillText("Crossing Day", xaxis.getPixelForValue(undefined, index), yaxis.top + 12);
+
+        }
+    });
+
+    // to globalize a chart variabl
+    window.chart = new Chart(ctx, chart);
+});
+
+$(function() {
     $('#export').click(function() {
         var canvas = $('#datgraph').get(0);
         canvas.toBlob(function(blob) {
@@ -11,6 +114,8 @@ $(document).ready(function() {
         });
     });
 });
+
+
 
 /**
  * Update graph from Object Array.
@@ -36,108 +141,19 @@ function updateGraph(data){
 
     // calculate a crossing point between fitnesses and fatigues
     var crsIndex = calcCrossingPointIndex(fitnesses, fatigues);
-    
-    // draw
-    // chart
-    var chart = {
-        type: 'line',
-        data: {
-            labels: days,
-            datasets: [
-                {
-                    label: 'Fitnesses',
-                    data: fitnesses,
-                    backgroundColor: 'rgba(0, 0, 255, 0.2)',
-                    borderColor: 'rgba(0, 0, 255, 0.5)',
-                    fill: false,
-                    pointBackgroundColor: 'rgb(0, 0, 255)'
-                },
-                {
-                    label: 'Fatigues',
-                    data: fatigues,
-                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                    borderColor: 'rgba(255, 0, 0, 0.5)',
-                    fill: false,
-                    pointBackgroundColor: 'rgb(255, 0, 0)'
-                },
-                {
-                    label: 'Performances',
-                    data: performances,
-                    backgroundColor: 'rgba(0, 255, 0, 0.2)',
-                    borderColor: 'rgba(0, 255, 0, 0.5)',
-                    fill: false,
-                    pointBackgroundColor: 'rgb(0, 255, 0)'
-                },
-            ]
-        },
-        
-        options: {
-            // add crossing point line
-            // Set the index of the value where you want to draw the line
-            lineAtIndex: crsIndex,
-            legend: {
-              display: true
-            },
-            responsive: true,
-            scales: {
-                x: {
-                    min: 0,
-                    max: days[days.length - 1],
-                    ticks: {
-                        stepSize: 1
-                      }
-                }
-            }
-        }
-    }
-    
 
-    // ref: https://stackoverflow.com/questions/45023773/chart-js-what-is-the-new-syntax-for-extending
-    var addVerticalLine = Chart.controllers.line.prototype.draw;
+    // update
+    // x
+    window.chart.data.labels = days;
+    // y
+    window.chart.data.datasets[0].data = fitnesses;
+    window.chart.data.datasets[1].data = fatigues;
+    window.chart.data.datasets[2].data = performances;
+    // crossing index
+    window.chart.options.crsIndex = crsIndex;
+    window.chart.options.scales.x.max = days[days.length - 1];
 
-    var ctx = $('#datgraph').get(0);
-
-    // background
-    var backgroundColor = 'white';
-    Chart.plugins.register({
-        beforeDraw: function(c) {
-            var ctx = c.chart.ctx;
-            ctx.fillStyle = backgroundColor;
-            ctx.fillRect(0, 0, c.chart.width, c.chart.height);
-        }
-    });
-    Chart.helpers.extend(Chart.controllers.line.prototype, {
-        draw: function () {
-        
-            addVerticalLine.apply(this, arguments);   
-
-            var chart = this.chart;
-            var ctx = chart.chart.ctx;
-
-            var index = chart.config.options.lineAtIndex;
-            if (index == -1){
-                return;
-            }
-            var xaxis = chart.scales['x-axis-0'];
-            var yaxis = chart.scales['y-axis-0'];
-            
-            // draw vertical line
-            ctx.save();
-            ctx.beginPath();
-            ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top + 24);
-            // color
-            ctx.strokeStyle = '#ff0000';
-            ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
-            ctx.stroke();
-            ctx.restore();
-
-            ctx.textAlign = 'center';
-            ctx.fillText("Crossing Day", xaxis.getPixelForValue(undefined, index), yaxis.top + 12);
-
-        }
-    });
-
-    new Chart(ctx, chart);
+    window.chart.update();
 }
 // global function to call this from data.js
 window.updateGraph = updateGraph;

@@ -12,6 +12,28 @@ require('moment');
 
 const papa = require('papaparse');
 
+/**
+ * Call this function on loaded Dom
+ */
+ $(window).ready(function() {
+    $.ajaxSetup({ async: false });
+    // below reading json code will be done async due to above code
+    $.getJSON("assets/contents.json" , function(d) {
+        var data = JSON.parse(JSON.stringify(d));
+
+        // append option
+        data.params.forEach(function(b) {
+            $("#selparams").append('<option value="' + b.value + '">' + b.text + '</option>');
+        });
+        // set data
+        window.updateParams();
+    });
+    // revert async setting
+    $.ajaxSetup({ async: true }); 
+
+    parseCSVAndUpdate_from_string('assets/default.csv');
+});
+
 // import csv
 $('.icontxt#import').on('click', function(){
     $('.dumfbtn').click();
@@ -169,24 +191,3 @@ function sortdata(){
 }
 window.sortdata = sortdata;
 
-/**
- * Call this function on loaded Dom
- */
-$(window).ready(function() {
-    $.ajaxSetup({ async: false });
-    // below reading json code will be done async due to above code
-    $.getJSON("assets/contents.json" , function(d) {
-        var data = JSON.parse(JSON.stringify(d));
-
-        // append option
-        data.params.forEach(function(b) {
-            $("#selparams").append('<option value="' + b.value + '">' + b.text + '</option>');
-        });
-        // set data
-        window.updateParams();
-    });
-    // revert async setting
-    $.ajaxSetup({ async: true }); 
-
-    parseCSVAndUpdate_from_string('assets/default.csv');
-});

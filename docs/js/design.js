@@ -1,3 +1,8 @@
+// set paramtips position next to hinticon
+$(document).ready(function() {
+  $("#paramtips").css("left", $("#hinticon").offset().left + $("#hinticon").outerWidth());
+  $("#paramtips").css("top",  -($("#hinticon").position().top + $("#hinticon").height()));
+});
 
 function updateParams(){
   $.getJSON("assets/contents.json" , function(d) {
@@ -58,12 +63,4 @@ $(function() {
 
     window.updateFromContent();
   });
-});
-
-
-// set paramtips position next to hinticon
-
-$(document).ready(function() {
-  $("#paramtips").css("left", $("#hinticon").offset().left + $("#hinticon").outerWidth());
-  $("#paramtips").css("top",  -($("#hinticon").position().top + $("#hinticon").height()));
 });
