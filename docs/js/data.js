@@ -65,7 +65,7 @@ const papa = require('papaparse');
         data: window.data,
     
         fields: [
-            { name: "Date", type: "dateField", width: "130", align: "center", validate: "required" },
+            { name: "Date", type: "dateField", align: "center", validate: "required" },
             { name: "TRIMP", type: "number", align: "center", validate: "required" },
             { type: "control" }
         ],
@@ -137,6 +137,18 @@ $('.icontxt#export').on('click', function(){
     $("#myChart").get(0).toBlob(function(blob) {
         saveAs(blob, "chart_1.png");
     });*/
+});
+
+// resizing event
+$(window).resize(function(){
+    if ($(window).width() > 1024){
+        var width = "100%";
+    }
+    else{
+        var width = $('#grapharea').width();
+    }
+    $("#dattable").jsGrid("option", "width", width);
+
 });
 
 /**
