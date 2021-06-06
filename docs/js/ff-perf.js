@@ -78,7 +78,16 @@ function updateGraph(data){
             legend: {
               display: true
             },
-            responsive: true
+            responsive: true,
+            scales: {
+                x: {
+                    min: 0,
+                    max: days[days.length - 1],
+                    ticks: {
+                        stepSize: 1
+                      }
+                }
+            }
         }
     }
     
@@ -140,13 +149,27 @@ window.updateGraph = updateGraph;
  */
 function parseDaysTRIMPs(data){
     var firstdate = moment(data[0].Date, ["MM-DD-YYYY", "YYYY-MM-DD", "YYYY/MM/DD"]);
+    var lastdate = moment(data[data.length - 1].Date, ["MM-DD-YYYY", "YYYY-MM-DD", "YYYY/MM/DD"]); 
+    
+    var totalDay = lastdate.diff(firstdate, 'days');
+    
     var days = [];
     var trimps = [];
-    for (const d of data) {
-        var currdate = moment(d.Date, ["MM-DD-YYYY", "YYYY-MM-DD", "YYYY/MM/DD"]); 
+
+    var i = 0;
+    for (var d = 0; d < totalDay; d++){
+        var currdate = moment(data[i].Date, ["MM-DD-YYYY", "YYYY-MM-DD", "YYYY/MM/DD"]); 
         var day = currdate.diff(firstdate, 'days');
-        days.push(day);
-        trimps.push(d.TRIMP);
+
+        if (d == day){
+            days.push(day);
+            trimps.push(data[i].TRIMP);
+            i++;
+        }
+        else{
+            days.push(d);
+            trimps.push(0);
+        }
     }
 
     return [days, trimps];
