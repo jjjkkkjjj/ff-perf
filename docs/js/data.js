@@ -16,6 +16,92 @@ const papa = require('papaparse');
  * Call this function on loaded Dom
  */
  $(window).ready(function() {
+    // Set custom datefield
+    // https://codepen.io/beaver71/pen/OzPXQX
+    var DateField = function(config) {
+        jsGrid.Field.call(this, config);
+        };
+
+        DateField.prototype = new jsGrid.Field({
+        sorter: function(date1, date2) {
+            return new Date(date1) - new Date(date2);
+        },
+        itemTemplate: function(value) {
+            return moment(new Date(value), 'YYYY-MM-DD').format("YYYY/MM/DD");
+        },
+        insertTemplate: function(value) {
+            return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
+        },
+        editTemplate: function(value) {
+            return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
+        },
+        insertValue: function() {
+            return moment(this._insertPicker.datepicker("getDate"), 'YYYY-MM-DD').format("YYYY/MM/DD");
+        },
+        editValue: function() {
+            return moment(this._editPicker.datepicker("getDate"), 'YYYY-MM-DD').format("YYYY/MM/DD");
+        }
+    });
+
+    jsGrid.fields.dateField = DateField;
+
+    // set data as global variable
+    window.data = []
+    if ($(window).width() > 1024){
+        var width = "100%";
+    }
+    else{
+        var width = $('#grapharea').width();
+    }
+    var graph = $("#dattable").jsGrid({
+        width: width,
+        height: "auto",
+    
+        inserting: true,
+        editing: true,
+        sorting: true,
+        paging: true,
+    
+        data: window.data,
+    
+        fields: [
+            { name: "Date", type: "dateField", width: "130", align: "center", validate: "required" },
+            { name: "TRIMP", type: "number", align: "center", validate: "required" },
+            { type: "control" }
+        ],
+
+        // callback
+        // deleted event
+        onItemDeleted: function(args) {
+            // cancel deletion of the item with 'protected' field
+            if(args.item.protected) {
+                args.cancel = true;
+            }
+            // update
+            window.updateFromContent();
+        },
+        // updated event
+        onItemUpdated: function(args) {
+            // cancel deletion of the item with 'protected' field
+            if(args.item.protected) {
+                args.cancel = true;
+            }
+            // update
+            window.updateFromContent();
+        },
+        // inserted event
+        onItemInserted: function(args) {
+            // cancel deletion of the item with 'protected' field
+            if(args.item.protected) {
+                args.cancel = true;
+            }
+            // update
+            window.updateFromContent();
+        }
+        
+    });
+    window.graph = graph;
+
     $.ajaxSetup({ async: false });
     // below reading json code will be done async due to above code
     $.getJSON("assets/contents.json" , function(d) {
@@ -31,6 +117,8 @@ const papa = require('papaparse');
     // revert async setting
     $.ajaxSetup({ async: true }); 
 
+
+    // load default csv
     parseCSVAndUpdate_from_string('assets/default.csv');
 });
 
@@ -81,110 +169,31 @@ function parseCSVAndUpdate_from_string(path){
     });
 }
 
-// date
-// https://codepen.io/beaver71/pen/OzPXQX
-$(function() { 
-    var DateField = function(config) {
-        jsGrid.Field.call(this, config);
-        };
-
-        DateField.prototype = new jsGrid.Field({
-        sorter: function(date1, date2) {
-            return new Date(date1) - new Date(date2);
-        },
-        itemTemplate: function(value) {
-            return moment(new Date(value), 'YYYY-MM-DD').format("YYYY/MM/DD");
-        },
-        insertTemplate: function(value) {
-            return this._insertPicker = $("<input>").datepicker({ defaultDate: new Date() });
-        },
-        editTemplate: function(value) {
-            return this._editPicker = $("<input>").datepicker().datepicker("setDate", new Date(value));
-        },
-        insertValue: function() {
-            return moment(this._insertPicker.datepicker("getDate"), 'YYYY-MM-DD').format("YYYY/MM/DD");
-        },
-        editValue: function() {
-            return moment(this._editPicker.datepicker("getDate"), 'YYYY-MM-DD').format("YYYY/MM/DD");
-        }
-    });
-
-    jsGrid.fields.dateField = DateField;
-});
 
 /**
  * Update table from Object Array.
  * @param {Array} data The Object Array. The Object contains 'Date' and 'TRIMP'
  */
 function updateTable(data){
-    // update global variable
+    // size
     if ($(window).width() > 1024){
         var width = "100%";
     }
     else{
         var width = $('#grapharea').width();
     }
-    $("#dattable").jsGrid({
-        width: width,
-        height: "auto",
-    
-        inserting: true,
-        editing: true,
-        sorting: true,
-        paging: true,
-    
-        data: data,
-    
-        fields: [
-            { name: "Date", type: "dateField", width: "130", align: "center", validate: "required" },
-            { name: "TRIMP", type: "number", align: "center", validate: "required" },
-            { type: "control" }
-        ],
+    $("#dattable").jsGrid("option", "width", width);
 
-        // callback
-        // deleted event
-        onItemDeleted: function(args) {
-            // cancel deletion of the item with 'protected' field
-            if(args.item.protected) {
-                args.cancel = true;
-            }
-            
-            // remove data
-            window.data.splice(args.itemIndex, 1);
-            // update
-            window.updateFromContent();
-        },
-        // updated event
-        onItemUpdated: function(args) {
-            // cancel deletion of the item with 'protected' field
-            if(args.item.protected) {
-                args.cancel = true;
-            }
-            
-            // update content
-            window.data[args.itemIndex] = args.item;
-            // update
-            window.updateFromContent();
-        },
-        // inserted event
-        onItemInserted: function(args) {
-            // cancel deletion of the item with 'protected' field
-            if(args.item.protected) {
-                args.cancel = true;
-            }
-            
-            // insert data
-            // below code is not needed.
-            //window.data.push(args.item);
-            // update
-            window.updateFromContent();
-        }
-        
-    });
+    // data
+    $("#dattable").jsGrid("option", "data", data);
 }
 window.updateTable = updateTable;
 
 function sortdata(){
+    if (window.data.length > 2){
+        return;
+    }
+
     window.data.sort((d1, d2) => {
         return new Date(d1.Date) - new Date(d2.Date);
     })
